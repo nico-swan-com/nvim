@@ -1,51 +1,42 @@
+-- if true then
+--   return {}
+-- end -- Uncomment to disable
+
 return {
   {
     "williamboman/mason.nvim",
-    opts = function(_, opts) 
+    opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "stylua",
-        "shellcheck",
-        "cspell",
-        "shfmt",
-        "flake8",
-        "angular-language-server",
-        "bash-language-server",
-        "docker-compose-language-service",
-        "dockerfile-language-server",
-        "dot-language-server",
-        "bash-debug-adapter",
         "chrome-debug-adapter",
-        "dart-debug-adapter",
         "js-debug-adapter",
-        "codelldb",
-        "eslint-lsp",
-        "eslint_d",
-        "hadolint",
-        "harper-ls",
-        "helm-ls",
-        "htmlhint",
-        "jq",
-        "json-lsp",
-        "lua-language-server",
-        "markdown-toc",
-        "markdownlint",
-        "markdownlint-cli2",
-        "marksman",
-        "nil",
-        "nixpkgs-fmt",
-        "prettier",
-        "prettierd",
-        "sql-formatter",
-        "sqlfluff",
-        "tailwindcss-language-server",
-        "taplo",
-        "ts-standard",
-        "typescript-language-server",
-        "vtsls",
-        "yaml-language-server",
-        "yamlfmt"
+        "bash-debug-adapter",
+        "mockdebug",
       })
-      end,
-    },
+    end,
+  },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    dependencies = "mason.nvim",
+    cmd = { "DapInstall", "DapUninstall" },
+    opts = {
+      -- Makes a best effort to setup the various debuggers with
+      -- reasonable debug configurations
+      automatic_installation = true,
 
+      -- You can provide additional configuration to the handlers,
+      -- see mason-nvim-dap README for more information
+      handlers = {},
+
+      -- You'll need to check that you have the required things installed
+      -- online, please don't ask me how to install them :)
+      ensure_installed = {
+        "js",
+        "chrome",
+        "mock",
+        "bash",
+      },
+    },
+    -- mason-nvim-dap is loaded when nvim-dap loads
+    config = function() end,
+  },
 }

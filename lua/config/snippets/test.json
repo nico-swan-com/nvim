@@ -1,0 +1,7 @@
+{
+  "For Loop": {
+    "prefix": ["test"],
+    "body": ["this is a test"],
+    "description": "This is a test vscode snippet."
+  }
+}
